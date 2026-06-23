@@ -1,0 +1,4 @@
+src/*.o
+libcredits.so
+libcredits.dylib
+.DS_Store

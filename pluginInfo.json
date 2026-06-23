@@ -1,0 +1,27 @@
+{
+	"repoName": "credits",
+	"name": "Credits (prepaid run-time gating)",
+	"author": "joeskolengaden",
+	"description": "Prepaid / metered lighting. The device is granted a balance of credits and burns one credit per running hour (no RTC needed - uses the monotonic clock). When the balance hits zero all channel output is forced off until a password-protected admin tops it up. Admin can also enable/disable the plugin.",
+	"homeURL": "https://github.com/joeskolengaden/credits",
+	"srcURL": "https://github.com/joeskolengaden/credits.git",
+	"bugURL": "https://github.com/joeskolengaden/credits/issues",
+	"allowUpdates": 1,
+	"hasSettingsPage": 1,
+	"pluginType": "channelData",
+	"pipelineStage": "modifyChannelData",
+	"appSchemaVersion": 1,
+	"settingsFile": "config/plugin.credits",
+	"settingsSchema": [
+		{ "key": "enabled", "label": "Plugin enabled", "type": "bool", "default": false, "group": "general", "appliesLive": true, "help": "Master switch. When off, lights are never gated. (Admin only in the UI.)" },
+		{ "key": "seconds_per_credit", "label": "Seconds per credit", "type": "int", "default": 3600, "min": 1, "max": 86400, "step": 1, "unit": "s", "group": "general", "appliesLive": true, "help": "How long one credit lasts. 3600 = one credit per hour. Lower it to test." },
+		{ "key": "count_mode", "label": "Count time", "type": "enum", "default": "running", "options": ["running", "playing"], "group": "general", "appliesLive": true, "help": "running = burn credits whenever the device is on; playing = only while a sequence is playing." },
+		{ "key": "blank_channels", "label": "Channels to blank", "type": "int", "default": 524288, "min": 0, "max": 8388608, "step": 1, "group": "general", "appliesLive": true, "help": "How many channels to force to 0 when out of credits. Default covers any home display; set to your exact channel count if larger." },
+		{ "key": "recharge_value", "label": "Recharge to (credits)", "type": "int", "default": 0, "min": 0, "max": 1000000, "step": 1, "group": "admin", "appliesLive": true, "help": "Target balance for a top-up. Applied once when recharge_token changes (admin sets both via the UI)." },
+		{ "key": "recharge_token", "label": "Recharge token", "type": "string", "default": "", "group": "admin", "appliesLive": true, "help": "Change this (with recharge_value) to set the balance to recharge_value. The plugin applies each new token exactly once." },
+		{ "key": "admin_password_hash", "label": "Admin password hash", "type": "string", "default": "", "group": "admin", "appliesLive": false, "help": "bcrypt hash of the admin password (set from the UI). Never store the plaintext here." }
+	],
+	"versions": [
+		{ "minFPPVersion": "5.0", "maxFPPVersion": "0", "branch": "main", "sha": "" }
+	]
+}
