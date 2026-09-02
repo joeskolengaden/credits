@@ -10,6 +10,20 @@ Works on any FPP **5.4 → 9.x** from one source (same approach as
 [pixelfx](https://github.com/joeskolengaden/pixelfx) /
 [pixelpulse](https://github.com/joeskolengaden/pixelpulse)).
 
+![credits settings page in FPP](images/settings.png)
+
+## Quick install (in FPP)
+
+**Plugins → Add / Manage Plugins → install from URL**, and paste:
+
+```
+https://raw.githubusercontent.com/joeskolengaden/credits/main/pluginInfo.json
+```
+
+> On **FPP 5.x** you must paste the **raw** URL exactly as above — 5.x does not
+> rewrite a GitHub `blob` link to `raw` for you. FPP 6+ accepts either. After it
+> installs, restart fppd so the compiled `.so` loads (see [Install](#install)).
+
 ## How it works
 
 - **No RTC required.** The target SBCs often have no real-time clock and their
